@@ -7,7 +7,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 
 # Задайте URL сайта
-URL = "https://www.spbgasu.ru/students/raspisanie/raspisanie-zanyatiy-vse-formy-obucheniya/"
+# URL = "https://www.spbgasu.ru/students/raspisanie/raspisanie-zanyatiy-vse-formy-obucheniya/"
+URL = "https://rasp.spbgasu.ru/" #это внутненняя ссылка на само расписание, указана в iframe основного сайта - можно сразу на нее переходить
 
 # Создаем браузер Chrome
 options = Options()
@@ -36,33 +37,20 @@ wait = WebDriverWait(driver, 15)
 
 print (driver.title)
 # div_buttons = driver.find_element(By.CLASS_NAME, "buttons")
+
+# all_divs = driver.find_elements(By.TAG_NAME, "div")
+# for div in all_divs:
+#     # if "Структура" in div.text:
+#     #     print("Нашли:", div)
+#     #     break
+#     print(div.text)
+
+# div_rasp_main=driver.find_element(By.ID, "rasp_main_block")
 div_structure=driver.find_element(By.XPATH, "//div[contains(., 'Структура')]")
+div_structure.click()
 
-# button = wait.until(EC.element_to_be_clickable((By.ID, "login-btn")))
 
-# # Пример: нажимаем кнопку №1
-# button1 = wait.until(
-#     EC.element_to_be_clickable((By.XPATH, "//div[contains(text(), 'Структура')]"))
-# )
-# button1.click()
 
-# # Пример: нажимаем кнопку №2
-# # button2 = wait.until(
-# #     EC.element_to_be_clickable((By.CSS_SELECTOR, ".next-button"))
-# # )
-# # button2.click()
-
-# # Даем странице подгрузиться
-# time.sleep(2)
-
-# # Пример: получаем динамические данные с сайта
-# data_element = wait.until(
-#     EC.presence_of_element_located((By.XPATH, "//div[class='row facultets']"))
-# )
-# data = data_element.text
-
-print("Полученные данные:")
-print(data)
 
 # Закрываем браузер
 driver.quit()
